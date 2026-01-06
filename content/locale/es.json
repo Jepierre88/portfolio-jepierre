@@ -145,6 +145,34 @@
 				],
 				"tech": ["Angular", "TypeScript", "Flutter (planned)"],
 				"links": { "live": "https://aurumsuite.com.co/#/auth/login" }
+			},
+			{
+				"slug": "coins-control",
+				"name": "Coins Control",
+				"summary": "Una aplicación full-stack para el sector de arriendos de corta estancia, que permite a propietarios gestionar reservas y control de acceso de forma simple.",
+				"description": "Coins Control es una plataforma de gestión para propiedades de alquiler a corto plazo que permite programar reservas y controlar cerraduras inteligentes mediante códigos de acceso. El sistema se integra con hardware de cerraduras inteligentes para ofrecer acceso automatizado y seguro a huéspedes, mejorando la conveniencia y la seguridad. Construida con un enfoque full-stack, la aplicación incluye interfaces frontend y servicios backend para entregar una experiencia fluida y confiable.",
+				"role": "Desarrollador Full-Stack",
+				"highlights": [
+					"Desarrollé componentes frontend y backend para gestión de reservas e integración con cerraduras inteligentes.",
+					"Implementé generación y validación segura de códigos de acceso para dispositivos de cerraduras inteligentes.",
+					"Colaboré con equipos de hardware y producto para asegurar una integración fluida de dispositivos IoT en la plataforma."
+				],
+				"tech": ["React", "Next.js", "Node.js", "TypeScript", "Smart Lock APIs"],
+				"links": { "live": "https://coins-control-front.vercel.app/" }
+			},
+			{
+				"slug": "chrono-pos",
+				"name": "Chrono POS",
+				"summary": "Un sistema punto de venta (POS) para entornos retail, que agiliza las ventas y la gestión de inventario.",
+				"description": "Chrono POS es una solución POS integral diseñada para simplificar y acelerar transacciones de venta, ofreciendo seguimiento de inventario y reportes en tiempo real. El sistema soporta flujos de caja, procesamiento de pagos y gestión de stock, ayudando a negocios retail a mejorar eficiencia y precisión en la operación diaria.",
+				"role": "Desarrollador Frontend",
+				"highlights": [
+					"Construí interfaces intuitivas para ventas y gestión de inventario usando tecnologías modernas de frontend.",
+					"Implementé servicios backend para manejar transacciones, actualización de inventario y reportes.",
+					"Integré pasarelas de pago y aseguré un procesamiento seguro dentro de la plataforma."
+				],
+				"tech": ["React", "Node.js", "Next.js", "TypeScript", "PostgreSQL"],
+				"links": { "live": "https://pos.chronosoft.com.co" }
 			}
 		],
 		"testimonials": [
