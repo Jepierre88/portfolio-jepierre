@@ -21,6 +21,7 @@ import {
 import { HyperText } from "@/components/ui/hyper-text"
 import { Separator } from "@/components/ui/separator"
 import type { Portfolio } from "@/content/portfolio"
+import { usePortfolioData } from "@/hooks/use-portfolio-data"
 import en from "@/content/locale/en.json"
 import {
   ArrowRightIcon,
@@ -28,6 +29,7 @@ import {
   GlobeIcon,
   LinkedinIcon,
   MailIcon,
+  LoaderIcon,
 } from "lucide-react"
 
 const NUMERIC_CHARACTER_SET = "0123456789+.-".split("")
@@ -108,8 +110,16 @@ function SocialLinks({ links }: { links: Portfolio["links"] }) {
 
 export function PortfolioPage() {
   const { t, i18n } = useTranslation()
+  const { portfolio: dbPortfolio, isLoading } = usePortfolioData()
 
+  // Use database portfolio if available, fallback to locale JSON
   const portfolio = React.useMemo(() => {
+    // If we have data from the database, use it
+    if (dbPortfolio) {
+      return dbPortfolio as Portfolio
+    }
+    
+    // Fallback to locale JSON while loading or if DB fails
     const currentLanguage = i18n.language
     const value = t("portfolioData", { returnObjects: true }) as unknown
     if (!value || typeof value !== "object" || Array.isArray(value)) {
@@ -117,7 +127,19 @@ export function PortfolioPage() {
     }
     void currentLanguage
     return value as Portfolio
-  }, [t, i18n.language])
+  }, [dbPortfolio, t, i18n.language])
+
+  // Show loading state only on initial load
+  if (isLoading && !portfolio) {
+    return (
+      <div className="bg-background flex min-h-screen items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <LoaderIcon className="text-muted-foreground size-8 animate-spin" />
+          <p className="text-muted-foreground text-sm">{t("loading") || "Loading..."}</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="bg-background min-h-screen">

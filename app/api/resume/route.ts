@@ -8,8 +8,8 @@ import {
 // Force Node.js runtime (not Edge) for PDF generation compatibility
 export const runtime = "nodejs";
 
-// Cache the PDF for 1 hour on Vercel's CDN
-export const revalidate = 3600;
+// Force dynamic rendering (not static)
+export const dynamic = "force-dynamic";
 
 /**
  * GET /api/resume
