@@ -23,13 +23,13 @@ import { Separator } from "@/components/ui/separator"
 import type { Portfolio } from "@/content/portfolio"
 import { usePortfolioData } from "@/hooks/use-portfolio-data"
 import en from "@/content/locale/en.json"
+import { PortfolioLoader } from "@/components/portfolio/portfolio-loader"
 import {
   ArrowRightIcon,
   GithubIcon,
   GlobeIcon,
   LinkedinIcon,
   MailIcon,
-  LoaderIcon,
 } from "lucide-react"
 
 const NUMERIC_CHARACTER_SET = "0123456789+.-".split("")
@@ -112,6 +112,23 @@ export function PortfolioPage() {
   const { t, i18n } = useTranslation()
   const { portfolio: dbPortfolio, isLoading } = usePortfolioData()
 
+  // Show a loader only during the very first hydration from DB.
+  // The page has a JSON fallback, so we explicitly gate this to prevent
+  // a flash of the fallback content before DB data arrives.
+  const [showInitialLoader, setShowInitialLoader] = React.useState(true)
+  const hasCompletedFirstLoad = React.useRef(false)
+
+  React.useEffect(() => {
+    if (hasCompletedFirstLoad.current) return
+    if (!isLoading) {
+      const timeout = window.setTimeout(() => {
+        hasCompletedFirstLoad.current = true
+        setShowInitialLoader(false)
+      }, 280)
+      return () => window.clearTimeout(timeout)
+    }
+  }, [isLoading])
+
   // Use database portfolio if available, fallback to locale JSON
   const portfolio = React.useMemo(() => {
     // If we have data from the database, use it
@@ -129,16 +146,8 @@ export function PortfolioPage() {
     return value as Portfolio
   }, [dbPortfolio, t, i18n.language])
 
-  // Show loading state only on initial load
-  if (isLoading && !portfolio) {
-    return (
-      <div className="bg-background flex min-h-screen items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
-          <LoaderIcon className="text-muted-foreground size-8 animate-spin" />
-          <p className="text-muted-foreground text-sm">{t("loading") || "Loading..."}</p>
-        </div>
-      </div>
-    )
+  if (showInitialLoader && isLoading && !dbPortfolio) {
+    return <PortfolioLoader />
   }
 
   return (

@@ -134,6 +134,12 @@
 }
 
 @layer utilities {
+  @keyframes shimmer {
+    100% {
+      transform: translateX(200%);
+    }
+  }
+
   @keyframes shiny-text {
     from {
       background-position: calc(-1 * var(--shimmer-width, 100px)) 0;
