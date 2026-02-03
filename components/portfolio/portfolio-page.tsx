@@ -604,7 +604,7 @@ export function PortfolioPage() {
           <div className={revealClass(revealStep >= 8, "pop", { delayMs: 40 })}>
             <Section id="contact" title={t("contact.title")} subtitle={t("contact.subtitle")}>
             <div className="grid gap-6 lg:grid-cols-12">
-              <div className="lg:col-span-5">
+              <div className="lg:col-span-4">
                 <Card>
                   <CardHeader>
                     <CardTitle>
@@ -614,25 +614,60 @@ export function PortfolioPage() {
                     </CardTitle>
                     <CardDescription>{t("contact.linksSubtitle")}</CardDescription>
                   </CardHeader>
-                  <CardContent className="grid gap-3">
-                    <Button asChild className="w-fit gap-2">
-                      <a href={`mailto:${portfolio.links.email}`}>
-                        <MailIcon className="size-4" />
-                        {portfolio.links.email}
-                      </a>
-                    </Button>
+                  <CardContent className="grid gap-4">
                     {portfolio.links.scheduleCall ? (
-                      <Button asChild variant="secondary" className="w-fit">
+                      <Button asChild className="w-full justify-between">
                         <a href={portfolio.links.scheduleCall} target="_blank" rel="noreferrer">
-                          {t("contact.schedule")}
+                          <span className="font-medium">{t("contact.schedule")}</span>
+                          <ArrowRightIcon className="size-4" />
                         </a>
                       </Button>
                     ) : null}
-                    <SocialLinks links={portfolio.links} />
+
+                    <div className="grid gap-2 sm:grid-cols-2">
+                      <Button asChild variant="secondary" className="h-auto justify-start gap-2 py-3">
+                        <a href={`mailto:${portfolio.links.email}`}>
+                          <MailIcon className="size-4" />
+                          <span className="min-w-0">
+                            <span className="block text-sm font-medium">{t("social.email")}</span>
+                            <span className="text-muted-foreground block truncate text-xs">
+                              {portfolio.links.email}
+                            </span>
+                          </span>
+                        </a>
+                      </Button>
+
+                      {portfolio.links.linkedin ? (
+                        <Button asChild variant="secondary" className="h-auto justify-start gap-2 py-3">
+                          <a href={portfolio.links.linkedin} target="_blank" rel="noreferrer">
+                            <LinkedinIcon className="size-4" />
+                            <span className="block text-sm font-medium">{t("social.linkedin")}</span>
+                          </a>
+                        </Button>
+                      ) : null}
+
+                      {portfolio.links.github ? (
+                        <Button asChild variant="secondary" className="h-auto justify-start gap-2 py-3">
+                          <a href={portfolio.links.github} target="_blank" rel="noreferrer">
+                            <GithubIcon className="size-4" />
+                            <span className="block text-sm font-medium">{t("social.github")}</span>
+                          </a>
+                        </Button>
+                      ) : null}
+
+                      {portfolio.links.website ? (
+                        <Button asChild variant="secondary" className="h-auto justify-start gap-2 py-3">
+                          <a href={portfolio.links.website} target="_blank" rel="noreferrer">
+                            <GlobeIcon className="size-4" />
+                            <span className="block text-sm font-medium">{t("social.website")}</span>
+                          </a>
+                        </Button>
+                      ) : null}
+                    </div>
                   </CardContent>
                 </Card>
               </div>
-              <div className="lg:col-span-7">
+              <div className="lg:col-span-8">
                 <Card>
                   <CardHeader>
                     <CardTitle>
