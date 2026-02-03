@@ -181,6 +181,10 @@ const styles = StyleSheet.create({
 
   eduTitle: { fontSize: 11, fontWeight: 700 },
   eduMeta: { fontSize: 9, color: "#6b7280", marginTop: 2 },
+  eduSubtitle: { fontSize: 10, color: "#374151", marginTop: 3, lineHeight: 1.35 },
+  certTitle: { fontSize: 11, fontWeight: 700 },
+  certMeta: { fontSize: 9, color: "#6b7280", marginTop: 2 },
+  certSubtitle: { fontSize: 10, color: "#374151", marginTop: 3, lineHeight: 1.35 },
 });
 
 // ================= COMPONENT =================
@@ -206,7 +210,7 @@ export function ResumeDocumentTemplate({ data }: Props) {
     const v = value.toLowerCase().trim();
     if (v === "present" || v === "presente") return new Date();
     const [m, y] = v.split(" ");
-    if (!monthNames[m] || !y) return null;
+    if (monthNames[m] === undefined || !y) return null;
     return new Date(Number(y), monthNames[m], 1);
   };
 
@@ -218,6 +222,18 @@ export function ResumeDocumentTemplate({ data }: Props) {
   }, 0);
 
   const years = Math.max(0, Math.floor(totalMonths / 12));
+
+  const isCertification = (degree?: string | null) =>
+    (degree ?? "").toLowerCase().includes("certif");
+
+  const formalEducation = education.filter((e) => !isCertification(e.degree));
+  const certifications = education.filter((e) => isCertification(e.degree));
+
+  const formatDateRange = (start?: string | null, end?: string | null) => {
+    if (!start && !end) return "";
+    if (start && end) return `${start} – ${end}`;
+    return start ?? end ?? "";
+  };
 
   return (
     <Document title={`${person.fullName} - CV`}>
@@ -322,15 +338,49 @@ export function ResumeDocumentTemplate({ data }: Props) {
                 {data.locale === "es" ? "Educación" : "Education"}
               </Text>
 
-              {education.map((edu, i) => (
+              {formalEducation.map((edu, i) => (
                 <View key={i} style={{ marginBottom: 10 }}>
-                  <Text style={styles.eduTitle}>{edu.degree}</Text>
-                  <Text style={styles.eduMeta}>
-                    {edu.institution} · {edu.startDate} – {edu.endDate}
+                  <Text style={styles.eduTitle}>
+                    {edu.degree}
+                    {edu.field ? ` — ${edu.field}` : ""}
                   </Text>
+                  <Text style={styles.eduMeta}>
+                    {edu.institution}
+                    {formatDateRange(edu.startDate, edu.endDate)
+                      ? ` · ${formatDateRange(edu.startDate, edu.endDate)}`
+                      : ""}
+                  </Text>
+                  {edu.description ? (
+                    <Text style={styles.eduSubtitle}>{edu.description}</Text>
+                  ) : null}
                 </View>
               ))}
             </View>
+
+            {certifications.length > 0 ? (
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>
+                  {data.locale === "es" ? "Certificaciones" : "Certifications"}
+                </Text>
+
+                {certifications.map((cert, i) => (
+                  <View key={i} style={{ marginBottom: 10 }}>
+                    <Text style={styles.certTitle}>
+                      {cert.description ?? cert.field ?? cert.degree}
+                    </Text>
+                    <Text style={styles.certMeta}>
+                      {cert.institution}
+                      {formatDateRange(cert.startDate, cert.endDate)
+                        ? ` · ${formatDateRange(cert.startDate, cert.endDate)}`
+                        : ""}
+                    </Text>
+                    {cert.field && cert.description ? (
+                      <Text style={styles.certSubtitle}>{cert.field}</Text>
+                    ) : null}
+                  </View>
+                ))}
+              </View>
+            ) : null}
           </View>
         </View>
       </Page>
