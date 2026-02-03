@@ -69,6 +69,31 @@ function Section({
   )
 }
 
+type RevealVariant = "fade-up" | "fade-down" | "zoom" | "slide-left" | "slide-right"
+
+function revealClass(isVisible: boolean, variant: RevealVariant) {
+  const base =
+    "motion-safe:transition-all motion-safe:duration-700 motion-safe:ease-out will-change-transform"
+
+  if (isVisible) {
+    return `${base} opacity-100 translate-x-0 translate-y-0 scale-100 blur-0`
+  }
+
+  switch (variant) {
+    case "fade-down":
+      return `${base} opacity-0 -translate-y-2 blur-[1px] pointer-events-none`
+    case "zoom":
+      return `${base} opacity-0 scale-[0.97] blur-[1px] pointer-events-none`
+    case "slide-left":
+      return `${base} opacity-0 -translate-x-3 blur-[1px] pointer-events-none`
+    case "slide-right":
+      return `${base} opacity-0 translate-x-3 blur-[1px] pointer-events-none`
+    case "fade-up":
+    default:
+      return `${base} opacity-0 translate-y-2 blur-[1px] pointer-events-none`
+  }
+}
+
 function SocialLinks({ links }: { links: Portfolio["links"] }) {
   const { t } = useTranslation()
 
@@ -118,6 +143,17 @@ export function PortfolioPage() {
   const [showInitialLoader, setShowInitialLoader] = React.useState(true)
   const hasCompletedFirstLoad = React.useRef(false)
 
+  const [revealStep, setRevealStep] = React.useState(0)
+  const [reduceMotion, setReduceMotion] = React.useState(false)
+
+  React.useEffect(() => {
+    try {
+      setReduceMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+    } catch {
+      setReduceMotion(false)
+    }
+  }, [])
+
   React.useEffect(() => {
     if (hasCompletedFirstLoad.current) return
     if (!isLoading) {
@@ -128,6 +164,28 @@ export function PortfolioPage() {
       return () => window.clearTimeout(timeout)
     }
   }, [isLoading])
+
+  React.useEffect(() => {
+    if (showInitialLoader) {
+      setRevealStep(0)
+      return
+    }
+
+    if (reduceMotion) {
+      setRevealStep(99)
+      return
+    }
+
+    setRevealStep(1)
+    const timeouts: number[] = []
+    const maxSteps = 9
+    for (let step = 2; step <= maxSteps; step += 1) {
+      timeouts.push(window.setTimeout(() => setRevealStep(step), (step - 1) * 110))
+    }
+    return () => {
+      timeouts.forEach((id) => window.clearTimeout(id))
+    }
+  }, [showInitialLoader, reduceMotion])
 
   // Use database portfolio if available, fallback to locale JSON
   const portfolio = React.useMemo(() => {
@@ -159,7 +217,12 @@ export function PortfolioPage() {
         {t("a11y.skipToContent")}
       </SmoothLink>
 
-      <header className="bg-background/80 supports-backdrop-filter:bg-background/60 sticky top-0 z-40 border-b backdrop-blur">
+      <header
+        className={
+          "bg-background/80 supports-backdrop-filter:bg-background/60 sticky top-0 z-40 border-b backdrop-blur " +
+          revealClass(revealStep >= 1, "fade-down")
+        }
+      >
         <div className="mx-auto w-full max-w-6xl px-4 py-3 sm:px-6">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-start justify-between gap-3 sm:block">
@@ -210,7 +273,7 @@ export function PortfolioPage() {
 
       <main id="content" className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
         <section className="grid gap-6 lg:grid-cols-12 lg:gap-10">
-          <div className="lg:col-span-7">
+          <div className={"lg:col-span-7 " + revealClass(revealStep >= 2, "fade-up")}>
             <div className="flex flex-wrap items-center gap-2">
               {portfolio.person.availabilityLabel ? (
                 <Badge variant="secondary">
@@ -246,7 +309,7 @@ export function PortfolioPage() {
             </div>
           </div>
 
-          <div className="lg:col-span-5">
+          <div className={"lg:col-span-5 " + revealClass(revealStep >= 3, "zoom")}>
             <Card>
               <CardHeader>
                 <CardTitle>
@@ -298,7 +361,8 @@ export function PortfolioPage() {
         <div className="my-12" />
 
         <div className="grid gap-12">
-          <Section id="about" title={t("about.title")} subtitle={t("about.subtitle")}>
+          <div className={revealClass(revealStep >= 4, "fade-up")}>
+            <Section id="about" title={t("about.title")} subtitle={t("about.subtitle")}>
             <div className="grid gap-8 lg:grid-cols-12">
               <div className="lg:col-span-8">
                 <div className="grid gap-4">
@@ -371,9 +435,11 @@ export function PortfolioPage() {
                 ) : null}
               </div>
             ) : null}
-          </Section>
+            </Section>
+          </div>
 
-          <Section id="work" title={t("work.title")} subtitle={t("work.subtitle")}>
+          <div className={revealClass(revealStep >= 5, "slide-left")}>
+            <Section id="work" title={t("work.title")} subtitle={t("work.subtitle")}>
             <div className="grid gap-4">
               {portfolio.experience.map((job) => (
                 <Card key={`${job.company}-${job.title}-${job.start}`}>
@@ -413,13 +479,15 @@ export function PortfolioPage() {
                 </Card>
               ))}
             </div>
-          </Section>
+            </Section>
+          </div>
 
-          <Section
-            id="projects"
-            title={t("projects.title")}
-            subtitle={t("projects.subtitle")}
-          >
+          <div className={revealClass(revealStep >= 6, "slide-right")}>
+            <Section
+              id="projects"
+              title={t("projects.title")}
+              subtitle={t("projects.subtitle")}
+            >
             <div className="grid gap-4 md:grid-cols-2">
               {portfolio.projects.map((project) => (
                 <Card key={project.slug} className="flex flex-col">
@@ -477,14 +545,16 @@ export function PortfolioPage() {
                 </Card>
               ))}
             </div>
-          </Section>
+            </Section>
+          </div>
 
           {portfolio.testimonials?.length ? (
-            <Section
-              id="testimonials"
-              title={t("testimonials.title")}
-              subtitle={t("testimonials.subtitle")}
-            >
+            <div className={revealClass(revealStep >= 7, "fade-up")}>
+              <Section
+                id="testimonials"
+                title={t("testimonials.title")}
+                subtitle={t("testimonials.subtitle")}
+              >
               <div className="grid gap-4 md:grid-cols-2">
                 {portfolio.testimonials.map((tm) => (
                   <Card key={`${tm.name}-${tm.quote.slice(0, 16)}`}>
@@ -510,10 +580,12 @@ export function PortfolioPage() {
                   </Card>
                 ))}
               </div>
-            </Section>
+              </Section>
+            </div>
           ) : null}
 
-          <Section id="contact" title={t("contact.title")} subtitle={t("contact.subtitle")}>
+          <div className={revealClass(revealStep >= 8, "fade-up")}>
+            <Section id="contact" title={t("contact.title")} subtitle={t("contact.subtitle")}>
             <div className="grid gap-6 lg:grid-cols-12">
               <div className="lg:col-span-5">
                 <Card>
@@ -559,10 +631,16 @@ export function PortfolioPage() {
                 </Card>
               </div>
             </div>
-          </Section>
+            </Section>
+          </div>
         </div>
 
-        <footer className="text-muted-foreground mt-16 border-t pt-8 text-sm">
+        <footer
+          className={
+            "text-muted-foreground mt-16 border-t pt-8 text-sm " +
+            revealClass(revealStep >= 9, "fade-up")
+          }
+        >
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <div>
               © {new Date().getFullYear()} {portfolio.person.fullName}
