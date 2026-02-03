@@ -69,28 +69,45 @@ function Section({
   )
 }
 
-type RevealVariant = "fade-up" | "fade-down" | "zoom" | "slide-left" | "slide-right"
+type RevealVariant =
+  | "fade"
+  | "pop"
+  | "drop"
+  | "rise"
+  | "slide-left"
+  | "slide-right"
 
-function revealClass(isVisible: boolean, variant: RevealVariant) {
-  const base =
-    "motion-safe:transition-all motion-safe:duration-700 motion-safe:ease-out will-change-transform"
+function revealClass(
+  isVisible: boolean,
+  variant: RevealVariant,
+  options?: { delayMs?: number }
+) {
+  const delay = options?.delayMs ? ` motion-safe:delay-[${options.delayMs}ms]` : ""
 
-  if (isVisible) {
-    return `${base} opacity-100 translate-x-0 translate-y-0 scale-100 blur-0`
+  if (!isVisible) {
+    return "opacity-0 pointer-events-none"
   }
 
+  // Uses tw-animate-css (shadcn) utilities already present in the repo.
+  // Adding the classes later triggers the CSS animation, giving us a more
+  // expressive, per-block reveal without re-mounting nodes.
+  const base =
+    "opacity-100 motion-safe:animate-in motion-safe:duration-700 motion-safe:ease-out will-change-transform"
+
   switch (variant) {
-    case "fade-down":
-      return `${base} opacity-0 -translate-y-2 blur-[1px] pointer-events-none`
-    case "zoom":
-      return `${base} opacity-0 scale-[0.97] blur-[1px] pointer-events-none`
+    case "pop":
+      return `${base} motion-safe:fade-in-0 motion-safe:zoom-in-95${delay}`
+    case "drop":
+      return `${base} motion-safe:fade-in-0 motion-safe:slide-in-from-top-6${delay}`
+    case "rise":
+      return `${base} motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-6${delay}`
     case "slide-left":
-      return `${base} opacity-0 -translate-x-3 blur-[1px] pointer-events-none`
+      return `${base} motion-safe:fade-in-0 motion-safe:slide-in-from-left-6${delay}`
     case "slide-right":
-      return `${base} opacity-0 translate-x-3 blur-[1px] pointer-events-none`
-    case "fade-up":
+      return `${base} motion-safe:fade-in-0 motion-safe:slide-in-from-right-6${delay}`
+    case "fade":
     default:
-      return `${base} opacity-0 translate-y-2 blur-[1px] pointer-events-none`
+      return `${base} motion-safe:fade-in-0${delay}`
   }
 }
 
@@ -220,7 +237,7 @@ export function PortfolioPage() {
       <header
         className={
           "bg-background/80 supports-backdrop-filter:bg-background/60 sticky top-0 z-40 border-b backdrop-blur " +
-          revealClass(revealStep >= 1, "fade-down")
+          revealClass(revealStep >= 1, "drop")
         }
       >
         <div className="mx-auto w-full max-w-6xl px-4 py-3 sm:px-6">
@@ -273,7 +290,7 @@ export function PortfolioPage() {
 
       <main id="content" className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
         <section className="grid gap-6 lg:grid-cols-12 lg:gap-10">
-          <div className={"lg:col-span-7 " + revealClass(revealStep >= 2, "fade-up")}>
+          <div className={"lg:col-span-7 " + revealClass(revealStep >= 2, "rise", { delayMs: 40 })}>
             <div className="flex flex-wrap items-center gap-2">
               {portfolio.person.availabilityLabel ? (
                 <Badge variant="secondary">
@@ -309,7 +326,7 @@ export function PortfolioPage() {
             </div>
           </div>
 
-          <div className={"lg:col-span-5 " + revealClass(revealStep >= 3, "zoom")}>
+          <div className={"lg:col-span-5 " + revealClass(revealStep >= 3, "pop", { delayMs: 60 })}>
             <Card>
               <CardHeader>
                 <CardTitle>
@@ -361,7 +378,7 @@ export function PortfolioPage() {
         <div className="my-12" />
 
         <div className="grid gap-12">
-          <div className={revealClass(revealStep >= 4, "fade-up")}>
+          <div className={revealClass(revealStep >= 4, "rise", { delayMs: 40 })}>
             <Section id="about" title={t("about.title")} subtitle={t("about.subtitle")}>
             <div className="grid gap-8 lg:grid-cols-12">
               <div className="lg:col-span-8">
@@ -438,7 +455,7 @@ export function PortfolioPage() {
             </Section>
           </div>
 
-          <div className={revealClass(revealStep >= 5, "slide-left")}>
+          <div className={revealClass(revealStep >= 5, "slide-left", { delayMs: 30 })}>
             <Section id="work" title={t("work.title")} subtitle={t("work.subtitle")}>
             <div className="grid gap-4">
               {portfolio.experience.map((job) => (
@@ -482,7 +499,7 @@ export function PortfolioPage() {
             </Section>
           </div>
 
-          <div className={revealClass(revealStep >= 6, "slide-right")}>
+          <div className={revealClass(revealStep >= 6, "slide-right", { delayMs: 30 })}>
             <Section
               id="projects"
               title={t("projects.title")}
@@ -549,7 +566,7 @@ export function PortfolioPage() {
           </div>
 
           {portfolio.testimonials?.length ? (
-            <div className={revealClass(revealStep >= 7, "fade-up")}>
+            <div className={revealClass(revealStep >= 7, "fade", { delayMs: 40 })}>
               <Section
                 id="testimonials"
                 title={t("testimonials.title")}
@@ -584,7 +601,7 @@ export function PortfolioPage() {
             </div>
           ) : null}
 
-          <div className={revealClass(revealStep >= 8, "fade-up")}>
+          <div className={revealClass(revealStep >= 8, "pop", { delayMs: 40 })}>
             <Section id="contact" title={t("contact.title")} subtitle={t("contact.subtitle")}>
             <div className="grid gap-6 lg:grid-cols-12">
               <div className="lg:col-span-5">
@@ -638,7 +655,7 @@ export function PortfolioPage() {
         <footer
           className={
             "text-muted-foreground mt-16 border-t pt-8 text-sm " +
-            revealClass(revealStep >= 9, "fade-up")
+            revealClass(revealStep >= 9, "fade", { delayMs: 40 })
           }
         >
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
