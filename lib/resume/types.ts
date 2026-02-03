@@ -15,6 +15,10 @@ export type ResumePerson = {
     availabilityLabel?: string | null;
     shortBio: string;
     about: string[];
+    // Optional list of languages the person speaks
+    languages?: string[];
+    // Optional list of interests/hobbies
+    interests?: string[];
 };
 
 export type ResumeHighlight = {

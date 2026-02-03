@@ -1,5 +1,5 @@
 import { renderToBuffer } from "@react-pdf/renderer";
-import { ResumeDocument, getLabelsForLocale } from "./pdf-document";
+import { ResumeDocumentTemplate } from "./pdf-document";
 import type { ResumeData } from "./types";
 
 /**
@@ -8,10 +8,8 @@ import type { ResumeData } from "./types";
  */
 
 export async function generateResumePdf(data: ResumeData): Promise<Buffer> {
-    const labels = getLabelsForLocale(data.locale);
-
     const pdfBuffer = await renderToBuffer(
-        <ResumeDocument data={data} labels={labels} />
+        <ResumeDocumentTemplate data={data} />
     );
 
     return Buffer.from(pdfBuffer);
