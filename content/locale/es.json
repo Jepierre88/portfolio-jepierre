@@ -1,0 +1,262 @@
+
+{
+	"a11y": {
+		"skipToContent": "Saltar al contenido"
+	},
+	"social": {
+		"email": "Correo",
+		"github": "GitHub",
+		"linkedin": "LinkedIn",
+		"website": "Sitio"
+	},
+	"theme": {
+		"toggleLabel": "Cambiar tema",
+		"light": "Claro",
+		"dark": "Oscuro",
+		"system": "Sistema"
+	},
+	"footer": {
+		"builtWith": "Hecho con",
+		"next": "Next.js",
+		"shadcn": "shadcn/ui"
+	},
+	"portfolioData": {
+		"person": {
+			"fullName": "Jean Ortiz",
+			"role": "Desarrollador Full-Stack",
+			"location": "Medellín, Colombia",
+			"availabilityLabel": "Abierto a oportunidades",
+			"shortBio": "Construyo aplicaciones web rápidas y accesibles con gran UX, trabajando de punta a punta desde la idea de producto hasta interfaces precisas y despliegues confiables.",
+			"about": [
+				"Soy un full-stack con enfoque frontend, con experiencia construyendo y lanzando productos reales en industrias como sistemas de parqueaderos, pagos fintech y operaciones mineras.",
+				"Mi trabajo se centra en crear arquitecturas de UI escalables y mantenibles con frameworks modernos, con fuerte énfasis en rendimiento, accesibilidad y experiencia de desarrollo.",
+				"He trabajado de cerca con producto, diseño y backend para reemplazar procesos manuales por sistemas digitales, mejorar la trazabilidad operativa y entregar impacto medible en entornos complejos y con mucho dominio.",
+				"Me siento muy cómodo trabajando en frontend, despliegues e integración de aplicaciones en ambientes productivos usados a diario por equipos operativos."
+			]
+		},
+		"links": {
+			"email": "jepierre.dev@hotmail.com",
+			"github": "https://github.com/Jepierre88",
+			"linkedin": "https://www.linkedin.com/in/jepierre89",
+			"website": "https://jepierre-dev.vercel.app",
+			"resumePdf": "https://drive.google.com/uc?export=download&id=1IGWYxtKS9WOxW59AkxxJ_IbGRIPVf3pd"
+		},
+		"highlights": [
+			{ "label": "Años", "value": "1+", "hint": "Experiencia profesional" },
+			{ "label": "Proyectos", "value": "10+", "hint": "En producción" },
+			{ "label": "Enfoque", "value": "DX + UX", "hint": "Frontends limpios y escalables" },
+			{ "label": "Stack", "value": "Next.js", "hint": "TypeScript, React, APIs" }
+		],
+		"skills": {
+			"primary": [
+				"TypeScript",
+				"Java",
+				"React",
+				"Next.js",
+				"Node.js",
+				"Spring Boot",
+				"AWS",
+				"Azure",
+				"APIs REST",
+				"Bases de datos relacionales (PostgreSQL, MySQL)",
+				"Tailwind CSS"
+			],
+			"secondary": [
+				"Angular",
+				"Flutter",
+				"Testing",
+				"CI/CD",
+				"Auth",
+				"Pagos",
+				"Rendimiento"
+			],
+			"tooling": ["Git", "Docker", "Vercel", "Storybook", "Playwright"]
+		},
+		"experience": [
+			{
+				"company": "SunValley Investments",
+				"title": "Desarrollador Frontend",
+				"location": "Híbrido",
+				"start": "Junio 2025",
+				"end": "Actualidad",
+				"summary": "Trabajé como parte de un equipo de ingeniería multifuncional enfocado en la transformación digital del sector minero, mejorando procesos manuales, la trazabilidad del procesamiento de oro y sistemas internos de automatización.",
+				"bullets": [
+					"Desarrollé herramientas internas web y móviles para reemplazar flujos manuales, ahorrando varias horas por semana a los equipos operativos.",
+					"Construí interfaces para soportar la trazabilidad end-to-end del procesamiento de oro, mejorando la visibilidad de datos y el control operativo.",
+					"Implementé flujos de autenticación segura y control de acceso basado en roles para sistemas internos usados por múltiples áreas.",
+					"Contribuí a la automatización de procesos operativos y de reporting en operaciones mineras.",
+					"Integré aplicaciones frontend con servicios backend, APIs de terceros y webhooks para sincronización de datos en tiempo real."
+				],
+				"tech": ["Angular", "Node.js", "TypeScript", "Flutter", "Azure"]
+			},
+			{
+				"company": "Coins Colombia",
+				"title": "Desarrollador Full-Stack",
+				"location": "Presencial",
+				"start": "Abril 2024",
+				"end": "Junio 2025",
+				"summary": "Lideré la arquitectura de UI y entregué features end-to-end para una plataforma de gestión de parqueaderos y automatización de dispositivos electrónicos, con interfaces integradas a hardware en tiempo real y sistemas operativos.",
+				"bullets": [
+					"Lideré el despliegue de un design system para aplicaciones operativas y de administración, mejorando consistencia y usabilidad.",
+					"Mejoré el rendimiento optimizando renderizado y assets, reduciendo tiempos de carga en dashboards usados para monitorear operaciones y dispositivos conectados.",
+					"Trabajé en conjunto con producto y diseño para entregar features de control de acceso, automatización de dispositivos y monitoreo en tiempo real, generando impacto operativo medible.",
+					"Construí y mantuve interfaces integradas con sistemas backend conectados a dispositivos electrónicos y sensores desplegados en parqueaderos."
+				],
+				"tech": [
+					"Next.js",
+					"TypeScript",
+					"Tailwind",
+					"LoopBackJS",
+					"NestJS",
+					"MySQL",
+					"AWS",
+					"Docker"
+				]
+			}
+		],
+		"projects": [
+			{
+				"slug": "coins-pay",
+				"name": "Coins Pay",
+				"summary": "Un gateway de pagos web que permite el pago seguro y sin fricción de sesiones de parqueo en múltiples parqueaderos.",
+				"description": "Coins Pay es una plataforma de pagos enfocada en parqueaderos que permite a los usuarios pagar sesiones de parqueo en diferentes ubicaciones. La aplicación se integra con Wompi como proveedor de pagos para conectarse de forma segura con sistemas bancarios. Construida con Next.js y desplegada en AWS, la plataforma enfatiza rendimiento, confiabilidad y una experiencia de pago fluida para operaciones reales.",
+				"role": "Frontend y despliegues",
+				"highlights": [
+					"Desarrollé la experiencia completa de frontend para pagos de sesiones de parqueo usando Next.js.",
+					"Construí interfaces responsivas y accesibles optimizadas para flujos de pago mobile-first.",
+					"Gestioné despliegues y configuración de ambientes en AWS.",
+					"Colaboré con backend y producto para asegurar flujos de pago confiables y estabilidad en despliegues."
+				],
+				"tech": ["Next.js", "TypeScript", "Tailwind", "AWS"],
+				"links": { "live": "https://pay.coins-colombia.com/auth/login" }
+			},
+			{
+				"slug": "aurum-suite",
+				"name": "Aurum Suite",
+				"summary": "Una plataforma SaaS de gestión minera diseñada para monitorear y administrar el procesamiento de oro en múltiples sitios a nivel mundial.",
+				"description": "Aurum Suite es una aplicación SaaS enfocada en minería diseñada para digitalizar y centralizar datos operativos a lo largo del ciclo de producción de oro. La plataforma soporta procesos de laboratorio, pesaje y básculas, actividades de planta y tracking multi-sitio, habilitando mejor trazabilidad, precisión de datos y visibilidad operativa en ubicaciones mineras globales.",
+				"role": "Desarrollador Frontend",
+				"highlights": [
+					"Construí y mantuve una plataforma web de gestión minera usando Angular.",
+					"Desarrollé interfaces para flujos de laboratorio, pesaje/básculas, operaciones de planta y tracking de procesos.",
+					"Mejoré la trazabilidad y consistencia de datos del procesamiento de oro entre múltiples operaciones.",
+					"Colaboré con equipos multifuncionales para modernizar procesos mineros manuales y fragmentados.",
+					"Preparé la arquitectura de la aplicación para una futura expansión móvil usando Flutter."
+				],
+				"tech": ["Angular", "TypeScript", "Flutter (planned)"],
+				"links": { "live": "https://aurumsuite.com.co/#/auth/login" }
+			},
+			{
+				"slug": "coins-control",
+				"name": "Coins Control",
+				"summary": "Una aplicación full-stack para el sector de arriendos de corta estancia, que permite a propietarios gestionar reservas y control de acceso de forma simple.",
+				"description": "Coins Control es una plataforma de gestión para propiedades de alquiler a corto plazo que permite programar reservas y controlar cerraduras inteligentes mediante códigos de acceso. El sistema se integra con hardware de cerraduras inteligentes para ofrecer acceso automatizado y seguro a huéspedes, mejorando la conveniencia y la seguridad. Construida con un enfoque full-stack, la aplicación incluye interfaces frontend y servicios backend para entregar una experiencia fluida y confiable.",
+				"role": "Desarrollador Full-Stack",
+				"highlights": [
+					"Desarrollé componentes frontend y backend para gestión de reservas e integración con cerraduras inteligentes.",
+					"Implementé generación y validación segura de códigos de acceso para dispositivos de cerraduras inteligentes.",
+					"Colaboré con equipos de hardware y producto para asegurar una integración fluida de dispositivos IoT en la plataforma."
+				],
+				"tech": ["React", "Next.js", "Node.js", "TypeScript", "Smart Lock APIs"],
+				"links": { "live": "https://coins-control-front.vercel.app/" }
+			},
+			{
+				"slug": "chrono-pos",
+				"name": "Chrono POS",
+				"summary": "Un sistema punto de venta (POS) para entornos retail, que agiliza las ventas y la gestión de inventario.",
+				"description": "Chrono POS es una solución POS integral diseñada para simplificar y acelerar transacciones de venta, ofreciendo seguimiento de inventario y reportes en tiempo real. El sistema soporta flujos de caja, procesamiento de pagos y gestión de stock, ayudando a negocios retail a mejorar eficiencia y precisión en la operación diaria.",
+				"role": "Desarrollador Frontend",
+				"highlights": [
+					"Construí interfaces intuitivas para ventas y gestión de inventario usando tecnologías modernas de frontend.",
+					"Implementé servicios backend para manejar transacciones, actualización de inventario y reportes.",
+					"Integré pasarelas de pago y aseguré un procesamiento seguro dentro de la plataforma."
+				],
+				"tech": ["React", "Node.js", "Next.js", "TypeScript", "PostgreSQL"],
+				"links": { "live": "https://pos.chronosoft.com.co" }
+			}
+		],
+		"testimonials": [
+			{
+				"name": "Fabio Sánchez",
+				"title": "Senior Frontend Developer",
+				"company": "SunValley Investments",
+				"quote": "Un excelente frontend engineer con mentalidad de producto. Entregó interfaces de alta calidad de forma consistente, mejorando rendimiento, escalabilidad y la experiencia de usuario en sistemas complejos."
+			},
+			{
+				"name": "Santiago Martinez",
+				"title": "Senior Backend Developer",
+				"company": "SunValley Investments",
+				"quote": "Un compañero confiable y proactivo que colaboró de cerca con equipos backend para entregar features bien integradas. Muy fuerte entendiendo dominios complejos y traduciéndolos en soluciones efectivas de frontend."
+			},
+			{
+				"name": "Richar Cifuentes",
+				"title": "Junior Backend Developer & ERP Manager",
+				"company": "SunValley Investments",
+				"quote": "Un gran mentor y colaborador. Ayudó a cerrar la brecha entre frontend, backend y procesos de ERP, aportando claridad y estructura a flujos operativos complejos."
+			}
+		]
+	},
+	"nav": {
+		"about": "Sobre mí",
+		"work": "Experiencia",
+		"projects": "Proyectos",
+		"contact": "Contacto"
+	},
+	"hero": {
+		"badge": "Desarrollador web",
+		"suffix": "creando productos modernos.",
+		"ctaProjects": "Ver proyectos",
+		"downloadResume": "Descargar CV"
+	},
+	"highlights": {
+		"title": "Destacados",
+		"subtitle": "Datos rápidos y cómo trabajo.",
+		"footer": "Prefiero entregar y mejorar — con código limpio y gran UX."
+	},
+	"about": {
+		"title": "Sobre mí",
+		"subtitle": "Una vista rápida de quién soy y cómo construyo.",
+		"coreSkills": "Habilidades clave",
+		"coreSkillsSubtitle": "Lo que uso a diario.",
+		"alsoStrong": "También fuerte en",
+		"tooling": "Herramientas"
+	},
+	"work": {
+		"title": "Experiencia",
+		"subtitle": "Logros con enfoque en impacto en roles recientes."
+	},
+	"projects": {
+		"title": "Proyectos",
+		"subtitle": "Algunas cosas de las que me siento orgulloso — resultados claros y buena ejecución.",
+		"roleLabel": "Rol:",
+		"live": "Ver",
+		"code": "Código"
+	},
+	"testimonials": {
+		"title": "Recomendaciones",
+		"subtitle": "Notas cortas de personas con las que he trabajado."
+	},
+	"contact": {
+		"title": "Contacto",
+		"subtitle": "Cuéntame qué estás construyendo — respondo rápido.",
+		"linksTitle": "Links",
+		"linksSubtitle": "Elige el canal más rápido.",
+		"messageTitle": "Envíame un mensaje",
+		"messageSubtitle": "Esto se envía directo (sin abrir tu correo).",
+		"schedule": "Agendar una llamada"
+	},
+	"form": {
+		"name": "Nombre",
+		"email": "Correo",
+		"subject": "Asunto",
+		"message": "Mensaje",
+		"namePlaceholder": "Tu nombre",
+		"emailPlaceholder": "tucorreo@dominio.com",
+		"subjectPlaceholder": "¿Qué estás construyendo?",
+		"messagePlaceholder": "Cuéntame sobre el proyecto, el tiempo y lo que necesitas.",
+		"send": "Enviar",
+		"sending": "Enviando…",
+		"clear": "Limpiar",
+		"sent": "Enviado. Te respondo pronto."
+	}
+}
