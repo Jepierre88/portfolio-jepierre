@@ -97,6 +97,9 @@ async function main() {
                     { name: "PostgreSQL", category: "secondary", order: 2 },
                     { name: "MySQL", category: "secondary", order: 3 },
                     { name: "REST APIs", category: "secondary", order: 4 },
+                    { name: "MCP Servers", category: "secondary", order: 5 },
+                    { name: "AI Agents", category: "secondary", order: 6 },
+                    { name: "n8n", category: "secondary", order: 7 },
                     // ── Tooling — Cloud, containers & deployment platforms ──
                     { name: "Git", category: "tooling", order: 0 },
                     { name: "Docker", category: "tooling", order: 1 },
@@ -406,6 +409,9 @@ async function main() {
                     { name: "PostgreSQL", category: "secondary", order: 2 },
                     { name: "MySQL", category: "secondary", order: 3 },
                     { name: "APIs REST", category: "secondary", order: 4 },
+                    { name: "Servidores MCP", category: "secondary", order: 5 },
+                    { name: "Agentes de IA", category: "secondary", order: 6 },
+                    { name: "n8n", category: "secondary", order: 7 },
                     // ── Herramientas — Cloud, contenedores y plataformas ──
                     { name: "Git", category: "tooling", order: 0 },
                     { name: "Docker", category: "tooling", order: 1 },
