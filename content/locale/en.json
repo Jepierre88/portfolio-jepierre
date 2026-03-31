@@ -95,6 +95,28 @@
         },
         "experience": [
             {
+                "company": "ChronoSoft",
+                "title": "Co-founder & Lead Developer",
+                "location": "Remote",
+                "start": "December 2025",
+                "end": "Present",
+                "summary": "Co-founded a software company alongside a team of developers, leading product strategy, client relations, and technical development of parking management and point-of-sale solutions.",
+                "bullets": [
+                    "Co-founded ChronoSoft and lead a team of developers building software products for business operations.",
+                    "Manage client relationships, gather requirements, and translate business needs into technical solutions.",
+                    "Develop and maintain frontend applications using React and modern web technologies.",
+                    "Collaborate with the backend team using NestJS when needed to deliver end-to-end features.",
+                    "Handle deployments on VPS infrastructure using Docker containers and CI/CD pipelines."
+                ],
+                "tech": [
+                    "React",
+                    "NestJS",
+                    "TypeScript",
+                    "Docker",
+                    "PostgreSQL"
+                ]
+            },
+            {
                 "company": "SunValley Investments",
                 "title": "Frontend Developer",
                 "location": "Hybrid",

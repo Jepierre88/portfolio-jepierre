@@ -108,6 +108,30 @@ async function main() {
             experiences: {
                 create: [
                     {
+                        company: "ChronoSoft",
+                        title: "Co-founder & Lead Developer",
+                        location: "Medellín, Antioquia, Colombia",
+                        startDate: "December 2025",
+                        endDate: "Present",
+                        summary:
+                            "Co-founded a software company alongside a team of developers, leading product strategy, client relations, and technical development of parking management and point-of-sale solutions.",
+                        bullets: [
+                            "Co-founded ChronoSoft and lead a team of developers building software products for business operations",
+                            "Manage client relationships, gather requirements, and translate business needs into technical solutions",
+                            "Develop and maintain frontend applications using React and modern web technologies",
+                            "Collaborate with the backend team using NestJS when needed to deliver end-to-end features",
+                            "Handle deployments on VPS infrastructure using Docker containers and CI/CD pipelines",
+                        ],
+                        tech: [
+                            "React",
+                            "NestJS",
+                            "TypeScript",
+                            "Docker",
+                            "PostgreSQL",
+                        ],
+                        order: 0,
+                    },
+                    {
                         company: "Sun Valley Investments",
                         title: "Frontend Developer",
                         location: "Envigado, Antioquia, Colombia",
@@ -129,7 +153,7 @@ async function main() {
                             "Flutter",
                             "Azure",
                         ],
-                        order: 0,
+                        order: 1,
                     },
                     {
                         company: "COINS TECH COLOMBIA",
@@ -158,7 +182,7 @@ async function main() {
                             "AWS",
                             "Docker",
                         ],
-                        order: 1,
+                        order: 2,
                     },
                 ],
             },
@@ -166,11 +190,11 @@ async function main() {
                 create: [
                     {
                         slug: "chrono-parking",
-                        name: "ChronoParking",
+                        name: "Chrono Parking",
                         summary:
                             "Comprehensive parking management platform with payments, sessions, and DIAN reporting — built by ChronoSoft.",
                         description:
-                            "ChronoParking is a full-featured parking management platform developed by ChronoSoft, the software company I co-founded with a team of developers. The platform handles parking session management, online and on-site payment processing, real-time occupancy tracking, and automated reporting to the DIAN (Colombian tax authority). Upcoming features include vehicle wash services and additional value-added services for parking facilities.",
+                            "Chrono Parking is a full-featured parking management platform developed by ChronoSoft, the software company I co-founded with a team of developers. The platform handles parking session management, online and on-site payment processing, real-time occupancy tracking, and automated reporting to the DIAN (Colombian tax authority). Upcoming features include vehicle wash services and additional value-added services for parking facilities.",
                         role: "Co-founder & Lead Developer",
                         highlights: [
                             "Co-founded ChronoSoft and led the development of the flagship parking management product",
@@ -212,28 +236,6 @@ async function main() {
                         ],
                         liveUrl: "https://pos.chronosoft.com.co",
                         order: 1,
-                    },
-                    {
-                        slug: "glow-zuly",
-                        name: "GLOW ZULY",
-                        summary:
-                            "E-commerce platform for modern online shopping experiences.",
-                        description:
-                            "GLOW ZULY is an e-commerce platform designed for modern online shopping experiences. The project focuses on creating a scalable and user-friendly shopping platform with a clean UI and fast performance.",
-                        role: "Full-Stack Developer",
-                        highlights: [
-                            "Building a complete e-commerce solution from scratch",
-                            "Implementing modern UI/UX patterns for seamless shopping experiences",
-                            "Setting up scalable infrastructure on Vercel",
-                        ],
-                        tech: [
-                            "Next.js",
-                            "TypeScript",
-                            "Tailwind CSS",
-                            "Vercel",
-                        ],
-                        liveUrl: "https://glow-zuly.vercel.app",
-                        order: 2,
                     },
                     {
                         slug: "coins-pay",
@@ -415,6 +417,30 @@ async function main() {
             experiences: {
                 create: [
                     {
+                        company: "ChronoSoft",
+                        title: "Co-fundador & Desarrollador Líder",
+                        location: "Medellín, Antioquia, Colombia",
+                        startDate: "Diciembre 2025",
+                        endDate: "Presente",
+                        summary:
+                            "Co-fundé una empresa de software junto a un equipo de desarrolladores, liderando la estrategia de producto, relaciones con clientes y desarrollo técnico de soluciones de gestión de parqueaderos y punto de venta.",
+                        bullets: [
+                            "Co-fundé ChronoSoft y lidero un equipo de desarrolladores construyendo productos de software para operaciones empresariales",
+                            "Gestiono relaciones con clientes, reúno requisitos y traduzco necesidades de negocio en soluciones técnicas",
+                            "Desarrollo y mantengo aplicaciones frontend usando React y tecnologías web modernas",
+                            "Colaboro con el equipo backend usando NestJS cuando es necesario para entregar features end-to-end",
+                            "Gestiono despliegues en infraestructura VPS usando contenedores Docker y pipelines de CI/CD",
+                        ],
+                        tech: [
+                            "React",
+                            "NestJS",
+                            "TypeScript",
+                            "Docker",
+                            "PostgreSQL",
+                        ],
+                        order: 0,
+                    },
+                    {
                         company: "Sun Valley Investments",
                         title: "Desarrollador Frontend",
                         location: "Envigado, Antioquia, Colombia",
@@ -436,7 +462,7 @@ async function main() {
                             "Flutter",
                             "Azure",
                         ],
-                        order: 0,
+                        order: 1,
                     },
                     {
                         company: "COINS TECH COLOMBIA",
@@ -465,7 +491,7 @@ async function main() {
                             "AWS",
                             "Docker",
                         ],
-                        order: 1,
+                        order: 2,
                     },
                 ],
             },
@@ -473,11 +499,11 @@ async function main() {
                 create: [
                     {
                         slug: "chrono-parking",
-                        name: "ChronoParking",
+                        name: "Chrono Parking",
                         summary:
                             "Plataforma integral de gestión de parqueaderos con pagos, sesiones y reporte a la DIAN — desarrollada por ChronoSoft.",
                         description:
-                            "ChronoParking es una plataforma completa de gestión de parqueaderos desarrollada por ChronoSoft, la empresa de software que co-fundé junto a un equipo de desarrolladores. La plataforma maneja gestión de sesiones de parqueo, procesamiento de pagos online y presenciales, seguimiento de ocupación en tiempo real y reporte automatizado a la DIAN. Próximamente incluirá servicios de lavadero de vehículos y servicios adicionales de valor agregado para parqueaderos.",
+                            "Chrono Parking es una plataforma completa de gestión de parqueaderos desarrollada por ChronoSoft, la empresa de software que co-fundé junto a un equipo de desarrolladores. La plataforma maneja gestión de sesiones de parqueo, procesamiento de pagos online y presenciales, seguimiento de ocupación en tiempo real y reporte automatizado a la DIAN. Próximamente incluirá servicios de lavadero de vehículos y servicios adicionales de valor agregado para parqueaderos.",
                         role: "Co-fundador & Desarrollador Líder",
                         highlights: [
                             "Co-fundé ChronoSoft y lideré el desarrollo del producto principal de gestión de parqueaderos",
@@ -519,28 +545,6 @@ async function main() {
                         ],
                         liveUrl: "https://pos.chronosoft.com.co",
                         order: 1,
-                    },
-                    {
-                        slug: "glow-zuly",
-                        name: "GLOW ZULY",
-                        summary:
-                            "Plataforma de e-commerce para experiencias de compra en línea modernas.",
-                        description:
-                            "GLOW ZULY es una plataforma de comercio electrónico diseñada para experiencias de compra en línea modernas. El proyecto se enfoca en crear una plataforma escalable y fácil de usar con una UI limpia y alto rendimiento.",
-                        role: "Desarrollador Full-Stack",
-                        highlights: [
-                            "Construyendo una solución de e-commerce completa desde cero",
-                            "Implementando patrones modernos de UI/UX para experiencias de compra fluidas",
-                            "Configurando infraestructura escalable en Vercel",
-                        ],
-                        tech: [
-                            "Next.js",
-                            "TypeScript",
-                            "Tailwind CSS",
-                            "Vercel",
-                        ],
-                        liveUrl: "https://glow-zuly.vercel.app",
-                        order: 2,
                     },
                     {
                         slug: "coins-pay",

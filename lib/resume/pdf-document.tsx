@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
   },
 
   /* ---------- BODY ---------- */
-  bodyRow: { flexDirection: "row", width: "100%" },
+  bodyRow: { flexDirection: "row", width: "100%", flex: 1 },
   leftCol: {
     width: "38%",
     backgroundColor: "#f3f4f6",
@@ -185,6 +185,35 @@ const styles = StyleSheet.create({
   certTitle: { fontSize: 11, fontWeight: 700 },
   certMeta: { fontSize: 9, color: "#6b7280", marginTop: 2 },
   certSubtitle: { fontSize: 10, color: "#374151", marginTop: 3, lineHeight: 1.35 },
+
+  /* ---------- CONTINUATION PAGE ---------- */
+  continuationPage: {
+    fontFamily: "OpenSans",
+    fontSize: 10,
+    color: "#111827",
+    backgroundColor: "#ffffff",
+    paddingHorizontal: 34,
+    paddingTop: 28,
+    paddingBottom: 28,
+  },
+  continuationHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 18,
+    paddingBottom: 10,
+    borderBottomWidth: 2,
+    borderBottomColor: "#0b0b0b",
+  },
+  continuationName: {
+    fontSize: 14,
+    fontWeight: 700,
+    textTransform: "uppercase",
+  },
+  continuationRole: {
+    fontSize: 10,
+    color: "#6b7280",
+  },
 });
 
 // ================= COMPONENT =================
@@ -237,7 +266,8 @@ export function ResumeDocumentTemplate({ data }: Props) {
 
   return (
     <Document title={`${person.fullName} - CV`}>
-      <Page size="A4" style={styles.page}>
+      {/* =========== PAGE 1 — Header + two-column layout =========== */}
+      <Page size="A4" style={styles.page} wrap={false}>
         {/* HEADER */}
         <View style={styles.headerRow}>
           <View style={styles.headerLeft}>
@@ -273,7 +303,7 @@ export function ResumeDocumentTemplate({ data }: Props) {
           </View>
         </View>
 
-        {/* BODY */}
+        {/* BODY — two-column */}
         <View style={styles.bodyRow}>
           {/* LEFT */}
           <View style={styles.leftCol}>
@@ -309,14 +339,14 @@ export function ResumeDocumentTemplate({ data }: Props) {
             </View>
           </View>
 
-          {/* RIGHT */}
+          {/* RIGHT — first page experiences */}
           <View style={styles.rightCol}>
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>
                 {data.locale === "es" ? "Experiencia Profesional" : "Experience"}
               </Text>
 
-              {experiences.map((exp, i) => (
+              {experiences.slice(0, 2).map((exp, i) => (
                 <View key={i} style={styles.expBlock}>
                   <Text style={styles.expCompany}>{exp.company}</Text>
                   <Text style={styles.expMeta}>
@@ -332,57 +362,93 @@ export function ResumeDocumentTemplate({ data }: Props) {
                 </View>
               ))}
             </View>
+          </View>
+        </View>
+      </Page>
 
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>
-                {data.locale === "es" ? "Educación" : "Education"}
-              </Text>
+      {/* =========== PAGE 2 — Continuation (clean single-column layout) =========== */}
+      <Page size="A4" style={styles.continuationPage}>
+        {/* Mini header */}
+        <View style={styles.continuationHeader} fixed>
+          <Text style={styles.continuationName}>{person.fullName}</Text>
+          <Text style={styles.continuationRole}>{person.role}</Text>
+        </View>
 
-              {formalEducation.map((edu, i) => (
-                <View key={i} style={{ marginBottom: 10 }}>
-                  <Text style={styles.eduTitle}>
-                    {edu.degree}
-                    {edu.field ? ` — ${edu.field}` : ""}
-                  </Text>
-                  <Text style={styles.eduMeta}>
-                    {edu.institution}
-                    {formatDateRange(edu.startDate, edu.endDate)
-                      ? ` · ${formatDateRange(edu.startDate, edu.endDate)}`
-                      : ""}
-                  </Text>
-                  {edu.description ? (
-                    <Text style={styles.eduSubtitle}>{edu.description}</Text>
-                  ) : null}
-                </View>
-              ))}
-            </View>
+        {/* Remaining experiences (if any) */}
+        {experiences.length > 2 ? (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>
+              {data.locale === "es" ? "Experiencia Profesional (cont.)" : "Experience (cont.)"}
+            </Text>
 
-            {certifications.length > 0 ? (
-              <View style={styles.section}>
-                <Text style={styles.sectionTitle}>
-                  {data.locale === "es" ? "Certificaciones" : "Certifications"}
+            {experiences.slice(2).map((exp, i) => (
+              <View key={i} style={styles.expBlock}>
+                <Text style={styles.expCompany}>{exp.company}</Text>
+                <Text style={styles.expMeta}>
+                  {exp.title} · {exp.startDate} – {exp.endDate}
                 </Text>
 
-                {certifications.map((cert, i) => (
-                  <View key={i} style={{ marginBottom: 10 }}>
-                    <Text style={styles.certTitle}>
-                      {cert.description ?? cert.field ?? cert.degree}
-                    </Text>
-                    <Text style={styles.certMeta}>
-                      {cert.institution}
-                      {formatDateRange(cert.startDate, cert.endDate)
-                        ? ` · ${formatDateRange(cert.startDate, cert.endDate)}`
-                        : ""}
-                    </Text>
-                    {cert.field && cert.description ? (
-                      <Text style={styles.certSubtitle}>{cert.field}</Text>
-                    ) : null}
+                {exp.bullets?.map((b, j) => (
+                  <View key={j} style={styles.bulletRow}>
+                    <Text style={styles.bulletDot}>•</Text>
+                    <Text style={styles.bulletText}>{b}</Text>
                   </View>
                 ))}
               </View>
-            ) : null}
+            ))}
           </View>
+        ) : null}
+
+        {/* Education */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>
+            {data.locale === "es" ? "Educación" : "Education"}
+          </Text>
+
+          {formalEducation.map((edu, i) => (
+            <View key={i} style={{ marginBottom: 10 }}>
+              <Text style={styles.eduTitle}>
+                {edu.degree}
+                {edu.field ? ` — ${edu.field}` : ""}
+              </Text>
+              <Text style={styles.eduMeta}>
+                {edu.institution}
+                {formatDateRange(edu.startDate, edu.endDate)
+                  ? ` · ${formatDateRange(edu.startDate, edu.endDate)}`
+                  : ""}
+              </Text>
+              {edu.description ? (
+                <Text style={styles.eduSubtitle}>{edu.description}</Text>
+              ) : null}
+            </View>
+          ))}
         </View>
+
+        {/* Certifications */}
+        {certifications.length > 0 ? (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>
+              {data.locale === "es" ? "Certificaciones" : "Certifications"}
+            </Text>
+
+            {certifications.map((cert, i) => (
+              <View key={i} style={{ marginBottom: 10 }}>
+                <Text style={styles.certTitle}>
+                  {cert.description ?? cert.field ?? cert.degree}
+                </Text>
+                <Text style={styles.certMeta}>
+                  {cert.institution}
+                  {formatDateRange(cert.startDate, cert.endDate)
+                    ? ` · ${formatDateRange(cert.startDate, cert.endDate)}`
+                    : ""}
+                </Text>
+                {cert.field && cert.description ? (
+                  <Text style={styles.certSubtitle}>{cert.field}</Text>
+                ) : null}
+              </View>
+            ))}
+          </View>
+        ) : null}
       </Page>
     </Document>
   );

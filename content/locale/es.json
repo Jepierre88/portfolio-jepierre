@@ -74,6 +74,22 @@
 		},
 		"experience": [
 			{
+				"company": "ChronoSoft",
+				"title": "Co-fundador & Desarrollador Líder",
+				"location": "Remoto",
+				"start": "Diciembre 2025",
+				"end": "Actualidad",
+				"summary": "Co-fundé una empresa de software junto a un equipo de desarrolladores, liderando la estrategia de producto, relaciones con clientes y desarrollo técnico de soluciones de gestión de parqueaderos y punto de venta.",
+				"bullets": [
+					"Co-fundé ChronoSoft y lidero un equipo de desarrolladores construyendo productos de software para operaciones empresariales.",
+					"Gestiono relaciones con clientes, reúno requisitos y traduzco necesidades de negocio en soluciones técnicas.",
+					"Desarrollo y mantengo aplicaciones frontend usando React y tecnologías web modernas.",
+					"Colaboro con el equipo backend usando NestJS cuando es necesario para entregar features end-to-end.",
+					"Gestiono despliegues en infraestructura VPS usando contenedores Docker y pipelines de CI/CD."
+				],
+				"tech": ["React", "NestJS", "TypeScript", "Docker", "PostgreSQL"]
+			},
+			{
 				"company": "SunValley Investments",
 				"title": "Desarrollador Frontend",
 				"location": "Híbrido",

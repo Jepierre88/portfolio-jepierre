@@ -21,6 +21,7 @@ import {
 import { HyperText } from "@/components/ui/hyper-text"
 import { Separator } from "@/components/ui/separator"
 import type { Portfolio } from "@/content/portfolio"
+import type { PortfolioWithEducation } from "@/lib/resume/converters"
 import { usePortfolioData } from "@/hooks/use-portfolio-data"
 import en from "@/content/locale/en.json"
 import { PortfolioLoader } from "@/components/portfolio/portfolio-loader"
@@ -206,20 +207,20 @@ export function PortfolioPage() {
   }, [showInitialLoader, reduceMotion])
 
   // Use database portfolio if available, fallback to locale JSON
-  const portfolio = React.useMemo(() => {
+  const portfolio = React.useMemo((): PortfolioWithEducation => {
     // If we have data from the database, use it
     if (dbPortfolio) {
-      return dbPortfolio as Portfolio
+      return dbPortfolio
     }
     
     // Fallback to locale JSON while loading or if DB fails
     const currentLanguage = i18n.language
     const value = t("portfolioData", { returnObjects: true }) as unknown
     if (!value || typeof value !== "object" || Array.isArray(value)) {
-      return (en as unknown as { portfolioData: Portfolio }).portfolioData
+      return (en as unknown as { portfolioData: Portfolio }).portfolioData as PortfolioWithEducation
     }
     void currentLanguage
-    return value as Portfolio
+    return value as PortfolioWithEducation
   }, [dbPortfolio, t, i18n.language])
 
   if (showInitialLoader && isLoading && !dbPortfolio) {
