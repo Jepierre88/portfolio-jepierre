@@ -28,6 +28,7 @@ import {
   ArrowRightIcon,
   GithubIcon,
   GlobeIcon,
+  GraduationCapIcon,
   LinkedinIcon,
   MailIcon,
 } from "lucide-react"
@@ -195,7 +196,7 @@ export function PortfolioPage() {
 
     setRevealStep(1)
     const timeouts: number[] = []
-    const maxSteps = 9
+    const maxSteps = 10
     for (let step = 2; step <= maxSteps; step += 1) {
       timeouts.push(window.setTimeout(() => setRevealStep(step), (step - 1) * 110))
     }
@@ -565,8 +566,44 @@ export function PortfolioPage() {
             </Section>
           </div>
 
+          {portfolio.education?.length ? (
+            <div className={revealClass(revealStep >= 7, "rise", { delayMs: 30 })}>
+              <Section
+                id="education"
+                title={t("education.title")}
+                subtitle={t("education.subtitle")}
+              >
+              <div className="grid gap-4 md:grid-cols-2">
+                {portfolio.education.map((edu) => (
+                  <Card key={`${edu.institution}-${edu.degree}`} className="flex flex-col">
+                    <CardHeader>
+                      <div className="flex items-start gap-3">
+                        <GraduationCapIcon className="text-muted-foreground mt-0.5 size-5 shrink-0" />
+                        <div className="grid gap-1">
+                          <CardTitle className="text-base">
+                            {edu.degree}{edu.field ? ` — ${edu.field}` : ""}
+                          </CardTitle>
+                          <CardDescription>{edu.institution}</CardDescription>
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="mt-auto">
+                      <p className="text-muted-foreground text-sm">
+                        {edu.startDate} — {edu.endDate ?? t("education.current")}
+                      </p>
+                      {edu.description ? (
+                        <p className="text-muted-foreground mt-1 text-sm">{edu.description}</p>
+                      ) : null}
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+              </Section>
+            </div>
+          ) : null}
+
           {portfolio.testimonials?.length ? (
-            <div className={revealClass(revealStep >= 7, "fade", { delayMs: 40 })}>
+            <div className={revealClass(revealStep >= 8, "fade", { delayMs: 40 })}>
               <Section
                 id="testimonials"
                 title={t("testimonials.title")}
@@ -601,7 +638,7 @@ export function PortfolioPage() {
             </div>
           ) : null}
 
-          <div className={revealClass(revealStep >= 8, "pop", { delayMs: 40 })}>
+          <div className={revealClass(revealStep >= 9, "pop", { delayMs: 40 })}>
             <Section id="contact" title={t("contact.title")} subtitle={t("contact.subtitle")}>
             <div className="grid gap-6 lg:grid-cols-12">
               <div className="lg:col-span-4">
@@ -690,7 +727,7 @@ export function PortfolioPage() {
         <footer
           className={
             "text-muted-foreground mt-16 border-t pt-8 text-sm " +
-            revealClass(revealStep >= 9, "fade", { delayMs: 40 })
+            revealClass(revealStep >= 10, "fade", { delayMs: 40 })
           }
         >
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">

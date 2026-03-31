@@ -35,7 +35,7 @@
 			]
 		},
 		"links": {
-			"email": "jepierre.dev@hotmail.com",
+			"email": "jeanpi.22241@gmail.com",
 			"github": "https://github.com/Jepierre88",
 			"linkedin": "https://www.linkedin.com/in/jepierre89",
 			"website": "https://jepierre-dev.vercel.app",
@@ -231,6 +231,11 @@
 		"roleLabel": "Rol:",
 		"live": "Ver",
 		"code": "Código"
+	},
+	"education": {
+		"title": "Formación",
+		"subtitle": "Formación académica y certificaciones.",
+		"current": "En curso"
 	},
 	"testimonials": {
 		"title": "Recomendaciones",

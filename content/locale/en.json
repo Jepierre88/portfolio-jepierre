@@ -34,7 +34,7 @@
             ]
         },
         "links": {
-            "email": "jepierre.dev@hotmail.com",
+            "email": "jeanpi.22241@gmail.com",
             "github": "https://github.com/Jepierre88",
             "linkedin": "https://www.linkedin.com/in/jepierre89",
             "website": "https://jepierre-dev.vercel.app",
@@ -287,8 +287,11 @@
         "roleLabel": "Role:",
         "live": "Live",
         "code": "Code"
-    },
-    "testimonials": {
+    },    "education": {
+        "title": "Education",
+        "subtitle": "Academic background and certifications.",
+        "current": "In Progress"
+    },    "testimonials": {
         "title": "Testimonials",
         "subtitle": "Short notes from people I’ve worked with."
     },
